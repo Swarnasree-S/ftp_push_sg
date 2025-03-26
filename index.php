@@ -21,7 +21,7 @@ $dateHelper = new DateTimeHelper('Asia/Kolkata');
 $dayStart = $dateHelper->getDayStartTimestamp();
 
 $start_time = $dayStart."s";
-$end_time = ($start_time+86400)."s";
+$end_time = strval($dayStart+86400)."s";
 $currentDate = date($config_datapoints['filename_format']);
 
 
@@ -93,7 +93,7 @@ foreach($config_datapoints['dataPoints'] as $datapoints){
             }
             
             // Add the series data to the corresponding time row
-            $rows[$time][$series_name] = $mean;
+            $rows[$time][$series_name] = round($mean,2);
         }
     }
     
@@ -128,7 +128,7 @@ try {
     //This ftpClass.php file needs external phpseclib library to function. so we need to install that via composer
     //composer require phpseclib/phpseclib:^2.0   
      
-    $ftp = new FileTransfer('ftp.50hertz.in', 'Satha', 'Oiw3017rKLZO');
+    $ftp = new FileTransfer('15.207.32.135', 'Satha', 'Oiw3017rKLZO');
     $ftp->connect();
     $ftp->uploadFile($currentDate.'.csv', '/SOLAR/TN/Sathamangalam/Balaji/'.$currentDate.'.csv');
     $ftp->close();
