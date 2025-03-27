@@ -22,7 +22,7 @@ $dayStart = $dateHelper->getDayStartTimestamp();
 
 $start_time = $dayStart."s";
 $end_time = strval($dayStart+86400)."s";
-$currentDate = date($config_datapoints['filename_format']);
+$currentDate = date($config_datapoints['filename_format'], time() + 19800);
 
 
 $queryGenerator = new QueryGenerator($config_datapoints,$start_time,$end_time);
