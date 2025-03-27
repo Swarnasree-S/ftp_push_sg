@@ -6,6 +6,7 @@ include_once('ftpClass.php');
 include_once('influxSeriesHelper.php');
 include_once('DateTimeHelper.php');
 
+
 $config_datapoints = get_config('data_config/report.json');
 // Usage
 $url = "https://influxdb.renewgrid.in/query";
@@ -23,7 +24,6 @@ $dayStart = $dateHelper->getDayStartTimestamp();
 $start_time = $dayStart."s";
 $end_time = strval($dayStart+86400)."s";
 $currentDate = date($config_datapoints['filename_format'], time() + 19800);
-
 
 $queryGenerator = new QueryGenerator($config_datapoints,$start_time,$end_time);
 $queries = $queryGenerator->generateQueries();
